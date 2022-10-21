@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { TemaService } from "src/tema/services/tema.service";
 import { DeleteResult, ILike, Repository } from "typeorm";
 import { Postagem } from "../entities/postagem.entity";
 
@@ -7,7 +8,8 @@ import { Postagem } from "../entities/postagem.entity";
 export class PostagemService {
     constructor (
         @InjectRepository(Postagem)
-        private postagemRepository: Repository<Postagem>
+        private postagemRepository: Repository<Postagem>,
+        private temaService:TemaService
     ){}
 
 async findAll (): Promise<Postagem[]> {
@@ -43,16 +45,40 @@ async findByTitulo (titulo: string): Promise<Postagem[]> {
         });
     }
     async create (postagem: Postagem): Promise<Postagem> {
+
+        if (postagem.tema){
+
+            let tema = await this.temaService.findById(postagem.tema.id)
+
+            if (!tema)
+                throw new HttpException('Tema não encontrado!', HttpStatus.NOT_FOUND);
+
+            return await this.postagemRepository.save(postagem);
+        }
+
         return await this.postagemRepository.save(postagem);
     }
+
     async update (postagem: Postagem): Promise<Postagem> {
+
         let buscaPostagem: Postagem = await this.findById(postagem.id);
 
         if(!buscaPostagem || !postagem.id)
             throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND);
 
+        if (postagem.tema){
+
+            let tema = await this.temaService.findById(postagem.tema.id)
+
+            if (!tema)
+                throw new HttpException('Tema não encontrado!', HttpStatus.NOT_FOUND);
+
+            return await this.postagemRepository.save(postagem);
+        }
+        
         return await this.postagemRepository.save(postagem);
     }
+
     async delete (id: number): Promise<DeleteResult>{
         let buscaPostagem = await this.findById(id);
 

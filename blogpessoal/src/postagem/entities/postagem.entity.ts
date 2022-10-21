@@ -5,7 +5,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } f
 @Entity({name: 'tb_postagens'})
 export class Postagem {
 
-    //Chave Primária, Autoincremento
+
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -15,8 +15,8 @@ export class Postagem {
 
     @IsNotEmpty()
     @Column({length: 1000, nullable: false})
-    text: string;
-    //
+    texto: string;
+    
     @UpdateDateColumn()
     data: Date;
 

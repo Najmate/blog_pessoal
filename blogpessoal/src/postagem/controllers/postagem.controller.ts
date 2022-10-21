@@ -1,8 +1,6 @@
 import { Controller, Get, HttpCode, HttpStatus, Param } from "@nestjs/common";
 import { Body, Delete, Post, Put } from "@nestjs/common/decorators";
 import { ParseIntPipe } from "@nestjs/common/pipes";
-import { identity } from "rxjs";
-import { runInThisContext } from "vm";
 import { Postagem } from "../entities/postagem.entity";
 import { PostagemService } from "../services/postagem.service";
 
