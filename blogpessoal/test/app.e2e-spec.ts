@@ -10,7 +10,7 @@ describe('Testes dos Módulos Usuário e Auth (e2e)', () => {
   let usuarioId: any;
   let app: INestApplication;
 
- /* beforeEach é um Método, que é executado antes de cada teste
+ /* beforeEach é um Método que é executado antes de cada teste
  O Método beforeAll() será executado uma única vez antes de iniciar os testes. 
 */
 
@@ -95,18 +95,6 @@ describe('Testes dos Módulos Usuário e Auth (e2e)', () => {
 
 });
 
-  /*
 
-  
-
-
-  it('05 - Deve atualizar um usuário', async () => {
-    (await request (app.getHttpServer()).put('/usuarios/atualizar').set('Authorization', ${token}.send({
-      
-    })
-  })
-
-  })
-  */
 
 
