@@ -23,6 +23,7 @@ import { UsuarioModule } from './usuario/usuario.module';
       synchronize: true
     
     }),*/
+    
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: process.env.DATABASE_URL,
