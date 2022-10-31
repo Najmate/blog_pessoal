@@ -72,10 +72,7 @@ describe('Testes dos Módulos Usuário e Auth (e2e)', () => {
     });
 
   it('04 - Deve Listar todos os Usuários', async () => {
-    return request(app.getHttpServer())
-      .get('/usuarios/all')
-      .set('Authorization', `${token}`)
-      .send({})
+    return request(app.getHttpServer()).get('/usuarios/all').set('Authorization', `${token}`).send({})
       expect(200)
   });
 
